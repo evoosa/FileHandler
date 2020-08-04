@@ -1,0 +1,15 @@
+
+create database files_db;
+
+\connect files_db
+
+CREATE TABLE filest_able (
+    id SERIAL PRIMARY KEY,
+    filename VARCHAR NOT NULL
+);
+
+
+----------------------------------
+
+insert into files_table (filename) values ('bla.txt');
+select * from files_table;
