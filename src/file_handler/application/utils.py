@@ -1,5 +1,5 @@
-from application.app import db_conn
-from application.models import File
+from app import db_conn
+from models import File
 
 
 def is_file_corrupted(filename: str) -> bool:
@@ -33,4 +33,3 @@ def add_file_to_db(filename: str):
     )
     db_conn.session.add(new_file)
     db_conn.session.commit()
-    print(f"{new_file} successfully created!")  # TODO - remove print!
