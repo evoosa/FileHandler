@@ -15,8 +15,10 @@ def add_new_files():
         try:
             filenames = request_json['filenames']
             add_files_to_db(filenames)
+            return Response(f"processed {len(filenames)} new files", status=status.HTTP_200_OK)
         except KeyError:
             return Response("missing 'filenames' field in JSON: {}", status=status.HTTP_400_BAD_REQUEST)
+        except Exception as e:
+            return Response(f"The server encountered an internal error: {e}", status.HTTP_500_INTERNAL_SERVER_ERROR)
     else:
         return Response("missing JSON with filenames in the request", status=status.HTTP_400_BAD_REQUEST)
-    return Response(f"processed {len(filenames)} new files", status=status.HTTP_200_OK)
