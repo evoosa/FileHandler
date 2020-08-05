@@ -1,6 +1,6 @@
 from application.app import db
 
-from file_handler.config import FILES_TABLE_NAME
+from config import FILES_TABLE_NAME
 
 
 class File(db.Model):
@@ -11,7 +11,7 @@ class File(db.Model):
         db.Integer,
         primary_key=True
     )
-    filename = db.column(
+    filename = db.Column(
         db.String(),
         index=False,
         unique=False,

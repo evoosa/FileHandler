@@ -1,5 +1,6 @@
-# TODO - create exception? use existing?
-# if there is no exception class that fits the requirement
+from application.app import db
+from application.models import File
+
 
 def is_file_corrupted(filename: str) -> bool:
     """
@@ -7,17 +8,27 @@ def is_file_corrupted(filename: str) -> bool:
     :param filename: name of the file to check
     :return: True if file is corrupted, else False
     """
-    pass
+    return False
 
 
-def add_files_to_db(filenames: list): # TODO - document better
+def add_files_to_db(filenames: list):
     """
     Go over a list of filenames, and add the non corrupted files to the database
     :arg filenames: file names the function will go over and add to the database
     """
-    # get the JSON from the request
-    # https://stackoverflow.com/questions/20001229/how-to-get-posted-json-in-flask
-    # parse the JSON and get the list of files
-    # for each file in the files:
-    # if file is not corrupted, add it to the database
-    pass
+    for filename in filenames:
+        if not is_file_corrupted(filename):
+            add_file_to_db(filename)
+
+
+def add_file_to_db(filename: str):
+    """
+    adds a single file to the database
+    :param filename: name of the file to add
+    """
+    new_file = File(
+        filename=filename
+    )
+    db.session.add(new_file)
+    db.session.commit()
+    print(f"{new_file} successfully created!")  # TODO - remove print!

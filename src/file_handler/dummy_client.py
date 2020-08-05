@@ -12,4 +12,4 @@ filenames2 = {"filenames": ['malauncher.log.1',
                             'malauncher.log.11',
                             'malauncher.log.2']}
 
-res = requests.post('http://localhost:80', json=filenames2)
+res = requests.post('http://localhost:80', json=filenames1)

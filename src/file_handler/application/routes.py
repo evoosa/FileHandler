@@ -14,5 +14,6 @@ def add_new_files():
     filenames = request.get_json()['filenames']
     add_files_to_db(filenames)
     return 'OK'
+
     # TODO - return response according to success? else?
     # TODO - check if the request actually got a json and nothing else
