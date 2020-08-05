@@ -1,6 +1,6 @@
-from file_handler.config import FILES_TABLE_NAME
+from application.app import db
 
-from app import db
+from file_handler.config import FILES_TABLE_NAME
 
 
 class File(db.Model):

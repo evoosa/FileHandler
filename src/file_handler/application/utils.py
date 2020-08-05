@@ -1,6 +1,5 @@
-
 # TODO - create exception? use existing?
-    # if there is no exception class that fits the requirement
+# if there is no exception class that fits the requirement
 
 def is_file_corrupted(filename: str) -> bool:
     """
@@ -10,10 +9,11 @@ def is_file_corrupted(filename: str) -> bool:
     """
     pass
 
-def add_files_to_db(): # TODO - document better
+
+def add_files_to_db(filenames: list): # TODO - document better
     """
     Go over a list of filenames, and add the non corrupted files to the database
-    :return:
+    :arg filenames: file names the function will go over and add to the database
     """
     # get the JSON from the request
     # https://stackoverflow.com/questions/20001229/how-to-get-posted-json-in-flask
@@ -21,4 +21,3 @@ def add_files_to_db(): # TODO - document better
     # for each file in the files:
     # if file is not corrupted, add it to the database
     pass
-
