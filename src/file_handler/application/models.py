@@ -1,18 +1,21 @@
-from application.app import db
+from sqlalchemy import Column, Integer, String
+from sqlalchemy.ext.declarative import declarative_base
 
 from config import FILES_TABLE_NAME
 
+Base = declarative_base()
 
-class File(db.Model):
+
+class File(Base):
     """Data model for files. each file has a unique ID, and a filename"""
 
     __tablename__ = FILES_TABLE_NAME
-    id = db.Column(
-        db.Integer,
+    id = Column(
+        Integer,
         primary_key=True
     )
-    filename = db.Column(
-        db.String(),
+    filename = Column(
+        String(),
         index=False,
         unique=False,
         nullable=False

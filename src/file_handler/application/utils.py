@@ -1,4 +1,4 @@
-from application.app import db
+from application.app import db_conn
 from application.models import File
 
 
@@ -31,6 +31,6 @@ def add_file_to_db(filename: str):
     new_file = File(
         filename=filename
     )
-    db.session.add(new_file)
-    db.session.commit()
+    db_conn.session.add(new_file)
+    db_conn.session.commit()
     print(f"{new_file} successfully created!")  # TODO - remove print!

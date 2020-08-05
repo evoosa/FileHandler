@@ -3,7 +3,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 from config import FLASK_APP_NAME
 
-db = SQLAlchemy() # TODO - WHERE SHOULD I PUT THIS
+db_conn = SQLAlchemy()
 
 
 def create_app():
@@ -11,8 +11,8 @@ def create_app():
     app = Flask(FLASK_APP_NAME, instance_relative_config=False)
     app.config.from_object('config.FlaskConfig')
 
-    db.init_app(app)
+    db_conn.init_app(app)
 
-    with app.app_context(): # TODO - read about it! :)
+    with app.app_context():
         import application.routes  # Import routes
         return app

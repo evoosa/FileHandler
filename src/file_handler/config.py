@@ -7,8 +7,7 @@ FLASK_APP_NAME = 'file_handler'
 
 
 class FlaskConfig:
-    """Set Flask configuration"""  # TODO - is it best practice
+    """Set Flask configuration"""
     SQLALCHEMY_DATABASE_URI = POSTGRES_URI
     SQLALCHEMY_TRACK_MODIFICATIONS = False
-    DEBUG = True  # TODO - REMOVE
     SQLALCHEMY_ECHO = False
