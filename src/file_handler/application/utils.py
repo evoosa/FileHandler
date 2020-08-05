@@ -21,8 +21,6 @@ def add_files_to_db(filenames: list):
     for filename in filenames:
         if not is_file_corrupted(filename):
             add_file_to_db(filename)
-        else:
-            print(f"{filename} corrupted")
 
 
 def add_file_to_db(filename: str):
