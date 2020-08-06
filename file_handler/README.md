@@ -10,9 +10,9 @@
 # Requirements
  * linux OS
  * Python 3.8.5
- * the Python packages specified in requirements.txt
  * PostgreSQL 9.2.4
     * postgresql-server, postgresql-contrib, postgresql-devel
+ * the Python packages specified in requirements.txt
     
 # Usage
 in order to test the application: 
