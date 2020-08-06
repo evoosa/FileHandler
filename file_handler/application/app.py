@@ -9,9 +9,10 @@ db_obj = SQLDB()
 def create_app():
     """Construct the core application."""
     app = Flask(FLASK_APP_NAME, instance_relative_config=False)
-    app.config.from_object('config.FlaskConfig')
-    db_obj.db_conn.init_app(app)
+    # app.config.from_object('config.FlaskConfig')
 
     with app.app_context():
         import application.routes  # import routes
+        # import ipdb # TODO - remove!
+        # ipdb.set_trace()
         return app
