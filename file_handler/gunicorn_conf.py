@@ -4,5 +4,4 @@ workers = 4
 timeout = 40
 workers_class = 'sync'
 proc_name = 'file_handler'
-use = 'wsgi:create_app'
 

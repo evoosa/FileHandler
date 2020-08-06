@@ -2,7 +2,7 @@ from flask import current_app as app
 from flask import request, Response
 from flask_api import status
 
-from application.utils import add_files_to_db
+from application.app import db_obj
 
 
 @app.route('/', methods=['POST'])
@@ -14,7 +14,7 @@ def add_new_files():
         request_json = request.get_json()
         try:
             filenames = request_json['filenames']
-            add_files_to_db(filenames)
+            db_obj.add_files_to_db(filenames)
             return Response(f"processed {len(filenames)} new files", status=status.HTTP_200_OK)
         except KeyError:
             return Response(f"missing 'filenames' field in JSON: {request_json}", status=status.HTTP_400_BAD_REQUEST)
