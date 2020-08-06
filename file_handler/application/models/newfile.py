@@ -16,10 +16,6 @@ class NewFile(Base):
     )
     filename = Column(
         String(),
-        index=False,
         unique=False,
         nullable=False
     )
-
-    def __repr__(self):
-        return '<File {}>'.format(self.filename)

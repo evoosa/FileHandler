@@ -1,22 +1,25 @@
-from sqlalchemy import create_engine, exc
-from sqlalchemy.orm import Session
 import threading
 
+from sqlalchemy import create_engine, exc
+from sqlalchemy.orm import Session
+
 from application.models.newfile import NewFile
+from application.models.db_heartbeat import DBHeartbeat
 from application.utils import is_file_corrupted
 
 FILES_DATABASE_NAME = 'files_db'
 POSTGRES_URI = f'postgres+psycopg2://postgres:postgres@localhost:5432/{FILES_DATABASE_NAME}'
 
 
-class SQLDB():  # TODO - refractore name, same for newfile?
+class SQLDB():  # TODO - refractor name, same for newfile?
     """Data model for the DB connection."""
 
     def __init__(self):
         self.db_session = self.get_db_session()
         self.send_heartbeats()
 
-    def get_db_session(self):
+    @staticmethod
+    def get_db_session():
         """ connect to the SQL Database """
         db_engine = create_engine(POSTGRES_URI)
         return Session(bind=db_engine)
@@ -28,13 +31,19 @@ class SQLDB():  # TODO - refractore name, same for newfile?
         threading.Timer(60, self.send_heartbeats).start()
         self.validate_conn()
 
+    def send_heartbeat(self):
+        """ update the heartbeat table with the current timestamp """
+        new_heartbeat = DBHeartbeat()
+        self.db_session.add(new_heartbeat)
+        self.db_session.commit()
+
     def validate_conn(self):
         """
         check if the DB connection is alive.
         if it's invalidated - try to reconnect. else, raise
         """
         try:
-            self.db_session.execute('SELECT 1')  # FIXME - DATEEEEEEE
+            self.send_heartbeat()
         except exc.DBAPIError as e:
             if e.connection_invalidated:
                 self.db_session = self.get_db_session()

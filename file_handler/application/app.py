@@ -10,6 +10,5 @@ def create_app():
     """Construct the core application."""
     app = Flask(FLASK_APP_NAME, instance_relative_config=False)
     with app.app_context():
-        # import ipdb # TODO - remove!
-        # ipdb.set_trace()
+        from application import routes
         return app
