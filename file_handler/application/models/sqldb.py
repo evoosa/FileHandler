@@ -1,5 +1,6 @@
 from sqlalchemy import create_engine, exc
 from sqlalchemy.orm import Session
+import threading
 
 from application.models.newfile import NewFile
 from application.utils import is_file_corrupted
@@ -22,9 +23,10 @@ class SQLDB():  # TODO - refractore name, same for newfile?
 
     def send_heartbeats(self):  # TODO - one of them is unnecessary?
         """
-        will run a thread, that will validate the db connection every minute
+        runs a thread, that will validate the db connection every minute
         """
-        pass
+        threading.Timer(60, self.send_heartbeats).start()
+        self.validate_conn()
 
     def validate_conn(self):
         """
