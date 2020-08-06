@@ -1,12 +1,12 @@
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.ext.declarative import declarative_base
 
-from file_handler.config import FILES_TABLE_NAME
+from config import FILES_TABLE_NAME
 
 Base = declarative_base()
 
 
-class File(Base):
+class NewFile(Base):
     """Data model for files. each file has a unique ID, and a filename"""
 
     __tablename__ = FILES_TABLE_NAME

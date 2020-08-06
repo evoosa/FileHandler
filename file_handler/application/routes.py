@@ -2,7 +2,7 @@ from flask import current_app as app
 from flask import request, Response
 from flask_api import status
 
-from file_handler.application.utils import add_files_to_db
+from application.utils import add_files_to_db
 
 
 @app.route('/', methods=['POST'])

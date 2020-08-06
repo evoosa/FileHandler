@@ -1,5 +1,5 @@
-from file_handler.config import FLASK_APP_HOST, FLASK_APP_PORT
-from file_handler.application.app import create_app
+from config import FLASK_APP_HOST, FLASK_APP_PORT
+from application.app import create_app
 
 application = create_app()
 

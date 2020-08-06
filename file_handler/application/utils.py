@@ -1,5 +1,5 @@
-from file_handler.application.app import db_conn
-from file_handler.application.models import File
+from application.app import db_conn
+from application.models import File
 
 
 def is_file_corrupted(filename: str) -> bool:
