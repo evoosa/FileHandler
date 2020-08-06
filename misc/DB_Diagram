@@ -3,13 +3,13 @@ create database files_db;
 
 \connect files_db
 
-CREATE TABLE filest_able (
+CREATE TABLE files_table (
     id SERIAL PRIMARY KEY,
     filename VARCHAR NOT NULL
 );
 
+CREATE TABLE heartbeats_table (
+    id SERIAL PRIMARY KEY,
+    timestamp TIMESTAMP NOT NULL
+);
 
-----------------------------------
-
-insert into files_table (filename) values ('bla.txt');
-select * from files_table;
