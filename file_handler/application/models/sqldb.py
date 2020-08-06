@@ -1,14 +1,12 @@
 from sqlalchemy import create_engine, exc
 from sqlalchemy.orm import Session
+
 from application.models.newfile import NewFile
 from application.utils import is_file_corrupted
 
 FILES_DATABASE_NAME = 'files_db'
 POSTGRES_URI = f'postgres+psycopg2://postgres:postgres@localhost:5432/{FILES_DATABASE_NAME}'
 
-
-# TODO - get this out of models?
-# TODO - move stuff from config here
 
 class SQLDB():  # TODO - refractore name, same for newfile?
     """Data model for the DB connection."""
@@ -28,33 +26,18 @@ class SQLDB():  # TODO - refractore name, same for newfile?
         """
         pass
 
-        # def validate_conn(self):
-        #     """
-        #     check if the DB connection is alive.
-        #     if it isn't, try to reconnect. if it fails, raise an exception
-        #     """
-        #     try:
-        #         self.db_conn.engine.exec('SELECT 1') #FIXME - DATEEEEEEE
-        #     except exc.DBAPIError as e:
-        #         # self.db_conn =
-        #
-        #     except exc.OperationalError:
-        # try
-        # execute update date in db
-        # except the disconnect error
-        # try to reconnect - recreate the db_conn obj
-
-        # except something else
-        # raise
-
-        # TODO - send timestamp to DB?
-        # exception which is raised on diconnect from DB
-        # execute an update
-        # sqlalchemy.exc.OperationalError: (psycopg2.OperationalError)
-        # check if conn is invalidated?
-        # db_obj.db_conn.engine.execute('SELECT 1')
-        # update DB with date in date table
-        pass
+    def validate_conn(self):
+        """
+        check if the DB connection is alive.
+        if it's invalidated - try to reconnect. else, raise
+        """
+        try:
+            self.db_session.execute('SELECT 1')  # FIXME - DATEEEEEEE
+        except exc.DBAPIError as e:
+            if e.connection_invalidated:
+                self.db_session = self.get_db_session()
+            else:
+                raise
 
     def add_files_to_db(self, filenames: list):
         """
