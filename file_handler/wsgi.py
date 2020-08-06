@@ -1,7 +1,6 @@
-from config import FLASK_APP_HOST, FLASK_APP_PORT
 from application.app import create_app
 
 application = create_app()
 
 if __name__ == '__main__':
-    application.run(host=FLASK_APP_HOST, port=FLASK_APP_PORT)
+    application.run(host=80, port='localhost')

@@ -4,6 +4,8 @@
     - it handles a max of 4 requests at once, with a timeout of 40 seconds per request.
 - a Flask server will then handle the request, and add the files to a PostgreSQL database.
 - only non-corrupted files are are added to the DB.
+- The flask server sends heartbeats to the DB
+    - It updates the the current timestamp in a heartbeats table.
   
 # Requirements
  * linux OS
@@ -15,6 +17,7 @@
 # Usage
 in order to test the application: 
  * cd into the file_handler directory
- * run: `gunicorn -c gunicorn_conf.py wsgi`
+ * run the application: `gunicorn -c gunicorn_conf.py wsgi`
+ * OR, run the flask application only: `python wsgi.py`
  * in order to test the application: `python client.py`
  

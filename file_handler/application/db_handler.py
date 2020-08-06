@@ -11,8 +11,8 @@ FILES_DATABASE_NAME = 'files_db'
 POSTGRES_URI = f'postgres+psycopg2://postgres:postgres@localhost:5432/{FILES_DATABASE_NAME}'
 
 
-class SQLDB():  # TODO - refractor name, same for newfile?
-    """Data model for the DB connection."""
+class DBHandler:
+    """ Handles the DB connection, and DB operations """
 
     def __init__(self):
         self.db_session = self.get_db_session()
@@ -24,7 +24,7 @@ class SQLDB():  # TODO - refractor name, same for newfile?
         db_engine = create_engine(POSTGRES_URI)
         return Session(bind=db_engine)
 
-    def send_heartbeats(self):  # TODO - one of them is unnecessary?
+    def send_heartbeats(self):
         """
         runs a thread, that will validate the db connection every minute
         """
